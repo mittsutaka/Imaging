@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   "stories": [
     "../components/**/*.stories.@(js|jsx|ts|tsx)"
@@ -11,12 +13,23 @@ module.exports = {
   "core": {
     "builder": "webpack5"
   },
-  webpackFinal: async(config, {configType}) => {
+  webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader']
-    });
-
-    return config;
-  }
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            modules: {
+              auto: true,
+            },
+          },
+        },
+        'sass-loader',
+      ],
+      include: path.resolve(__dirname, '../'),
+    })
+    return config
+  },
 }
