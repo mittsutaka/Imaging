@@ -1,12 +1,23 @@
+@import "../../../styles/variables.scss";
+
 .btn {
   cursor: pointer;
-  background-color: red;
-  
-  .primary{
-    background-color: aquamarine;
+  color: $whiteColor;
+  padding: 8px 32px;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
+
+  &:hover{
+    opacity: 0.8;
   }
 
-  .secondory{
+  &-primary{
+    background-color: $mainColor;
+  }
 
+  &-secondory{
+    background-color: $subColor;
   }
 }
